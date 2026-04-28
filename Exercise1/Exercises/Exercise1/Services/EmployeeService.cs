@@ -28,12 +28,13 @@ namespace CSharpExercises.Exercises.Exercise1.Services
             });
         }
 
-        public List<Employee> GetAllEmployees() {
+        public List<Employee> GetAllEmployees() 
+        {
             return _employees;
         }
 
-        public bool AddEmployee(string firstName, string lastName, int salary) {
-
+        public bool AddEmployee(string firstName, string lastName, int salary) 
+        {
             _employees.Add(new Employee
             {
                 FirstName = firstName,
@@ -50,6 +51,13 @@ namespace CSharpExercises.Exercises.Exercise1.Services
             emp.FirstName = firstName;
             emp.LastName = lastName;
             emp.Salary = salary;
+
+            return true;
+        }
+
+        public bool RemoveEmployee(int index) 
+        {
+            _employees.RemoveAt(index);
 
             return true;
         }

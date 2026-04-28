@@ -8,9 +8,9 @@ namespace CSharpExercises.Exercises.Exercise1
     internal class Exercise1
     {
         private readonly EmployeeService _employeeService;
-        private string _invalidMsg = "Invalid choice. Please choose from menu";
-        private string _emptyOrInvalidInputMsg = "Empty or Invalid input. Please enter valid value";
-        private string _employeeNotFoundMsg = "Employee not found. Please enter an valid index";
+        private readonly string _invalidMsg = "Invalid choice. Please choose from menu";
+        private readonly string _emptyOrInvalidInputMsg = "Empty or Invalid input. Please enter valid value";
+        private readonly string _employeeNotFoundMsg = "Employee not found. Please enter an valid index";
 
         public Exercise1(EmployeeService employeeService)
         {
@@ -42,11 +42,13 @@ namespace CSharpExercises.Exercises.Exercise1
                         case 3:
                             EditEmployee();
                             break;
+                        case 4:
+                            RemoveEmployee();
+                            break;
                         default:
                             Console.WriteLine(_invalidMsg);
                             break;
                     }
-
 
                 }
                 else
@@ -142,6 +144,31 @@ namespace CSharpExercises.Exercises.Exercise1
 
             var isEdited = _employeeService.EditEmployee(firstName, lastName, salary, index);
             Console.WriteLine(isEdited ? "Edit employee done!" : "Edit employee failed!");
+        }
+
+        private void RemoveEmployee()
+        {
+            var employees = _employeeService.GetAllEmployees();
+
+            ShowEmployees();
+
+            Console.Write("Select employee to be removed: ");
+            if (!int.TryParse(Console.ReadLine(), out int index))
+            {
+                Console.WriteLine(_employeeNotFoundMsg);
+                return;
+            }
+
+            index = index - 1;
+
+            if (index < 0 || index >= employees.Count)
+            {
+                Console.WriteLine(_employeeNotFoundMsg);
+                return;
+            }
+
+            var isRemoved = _employeeService.RemoveEmployee(index);
+            Console.WriteLine(isRemoved ? "Remove employee done!" : "Remove employee failed!");
         }
     }
 }
