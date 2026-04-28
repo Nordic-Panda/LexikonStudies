@@ -43,5 +43,15 @@ namespace CSharpExercises.Exercises.Exercise1.Services
 
             return true;
         }
+
+        public bool EditEmployee(string firstName, string lastName, int salary, int index)
+        {
+            var emp = _employees[index];
+            emp.FirstName = firstName;
+            emp.LastName = lastName;
+            emp.Salary = salary;
+
+            return true;
+        }
     }
 }

@@ -15,7 +15,9 @@ namespace CSharpExercises.Exercises.Exercise1
         }
         public void Run()
         {
-            string invalidMsg = "Invalid choice. Please choose from menu (1-4)";
+            string invalidMsg = "Invalid choice. Please choose from menu";
+            string emptyInputMsg = "Empty or Invalid input. Please enter valid value";
+            string employeeNotFoundMsg = "Employee not found. Please enter an valid index";
 
             Console.WriteLine("Welcome to Exercise 1 - Restaurant Register");
             Console.WriteLine("Please select from below menu (1-4):");
@@ -31,18 +33,21 @@ namespace CSharpExercises.Exercises.Exercise1
                 if (userChoice >= 1 && userChoice <= 4) {
                     switch (userChoice) {
                         case 1:
-                            var employees = _employeeService.GetAllEmployees();
-                            foreach (var emp in employees) {
-                                Console.WriteLine($"Name: {emp.FirstName} {emp.LastName}, Salary: {emp.Salary}");
+                            {
+                                var employees = _employeeService.GetAllEmployees();
+                                foreach (var emp in employees)
+                                {
+                                    Console.WriteLine($"Name: {emp.FirstName} {emp.LastName}, Salary: {emp.Salary}");
+                                }
+                                break;
                             }
-                            break;
                         case 2:
                             Console.Write("First name: ");
                             string firstName = Console.ReadLine();
 
                             if (string.IsNullOrWhiteSpace(firstName))
                             {
-                                Console.WriteLine("First name cannot be empty.");
+                                Console.WriteLine(emptyInputMsg);
                                 break;
                             }
 
@@ -51,19 +56,40 @@ namespace CSharpExercises.Exercises.Exercise1
 
                             if (string.IsNullOrWhiteSpace(lastName))
                             {
-                                Console.WriteLine("Last name cannot be empty.");
+                                Console.WriteLine(emptyInputMsg);
                                 break;
                             }
 
                             Console.Write("Salary: ");
                             if (!int.TryParse(Console.ReadLine(), out int salary) || salary < 0)
                             {
-                                Console.WriteLine("Invalid salary. Must be a positive number.");
+                                Console.WriteLine(emptyInputMsg);
                                 break;
                             }
 
                             _employeeService.AddEmployee(firstName, lastName, salary);
                             break;
+                        case 3:
+                            {
+                                var employees = _employeeService.GetAllEmployees();
+                                for (int i = 0; i < employees.Count; i++)
+                                {
+                                    var emp = employees[i];
+                                    Console.WriteLine($"{i + 1}. {emp.FirstName} {emp.LastName} - {emp.Salary}");
+                                }
+
+                                Console.Write("Which employee do you wish to edit?");
+                                if (!int.TryParse(Console.ReadLine(), out int employeeIndex) || employeeIndex < 0)
+                                {
+
+                                    //_employeeService.EditEmployee();
+                                    break;
+                                }
+                                else {
+                                    Console.WriteLine(employeeNotFoundMsg);
+                                    break;
+                                }
+                            }
                         default:
                             Console.WriteLine(invalidMsg);
                             break;
