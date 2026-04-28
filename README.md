@@ -1,0 +1,1 @@
+# Exercises for Lexikon Fullstack VT-2026 studies
