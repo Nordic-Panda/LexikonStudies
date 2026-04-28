@@ -8,6 +8,9 @@ namespace CSharpExercises.Exercises.Exercise1
     internal class Exercise1
     {
         private readonly EmployeeService _employeeService;
+        private string _invalidMsg = "Invalid choice. Please choose from menu";
+        private string _emptyOrInvalidInputMsg = "Empty or Invalid input. Please enter valid value";
+        private string _employeeNotFoundMsg = "Employee not found. Please enter an valid index";
 
         public Exercise1(EmployeeService employeeService)
         {
@@ -15,10 +18,6 @@ namespace CSharpExercises.Exercises.Exercise1
         }
         public void Run()
         {
-            string invalidMsg = "Invalid choice. Please choose from menu";
-            string emptyInputMsg = "Empty or Invalid input. Please enter valid value";
-            string employeeNotFoundMsg = "Employee not found. Please enter an valid index";
-
             Console.WriteLine("Welcome to Exercise 1 - Restaurant Register");
             Console.WriteLine("Please select from below menu (1-4):");
             Console.WriteLine("1. Show all employees info");
@@ -30,84 +29,120 @@ namespace CSharpExercises.Exercises.Exercise1
 
             if (int.TryParse(userMenuInput, out int userChoice))
             {
-                if (userChoice >= 1 && userChoice <= 4) {
-                    switch (userChoice) {
+                if (userChoice >= 1 && userChoice <= 4)
+                {
+                    switch (userChoice)
+                    {
                         case 1:
-                            {
-                                var employees = _employeeService.GetAllEmployees();
-                                foreach (var emp in employees)
-                                {
-                                    Console.WriteLine($"Name: {emp.FirstName} {emp.LastName}, Salary: {emp.Salary}");
-                                }
-                                break;
-                            }
+                            ShowEmployees();
+                            break;
                         case 2:
-                            Console.Write("First name: ");
-                            string firstName = Console.ReadLine();
-
-                            if (string.IsNullOrWhiteSpace(firstName))
-                            {
-                                Console.WriteLine(emptyInputMsg);
-                                break;
-                            }
-
-                            Console.Write("Last name: ");
-                            string lastName = Console.ReadLine();
-
-                            if (string.IsNullOrWhiteSpace(lastName))
-                            {
-                                Console.WriteLine(emptyInputMsg);
-                                break;
-                            }
-
-                            Console.Write("Salary: ");
-                            if (!int.TryParse(Console.ReadLine(), out int salary) || salary < 0)
-                            {
-                                Console.WriteLine(emptyInputMsg);
-                                break;
-                            }
-
-                            _employeeService.AddEmployee(firstName, lastName, salary);
+                            AddEmployee();
                             break;
                         case 3:
-                            {
-                                var employees = _employeeService.GetAllEmployees();
-                                for (int i = 0; i < employees.Count; i++)
-                                {
-                                    var emp = employees[i];
-                                    Console.WriteLine($"{i + 1}. {emp.FirstName} {emp.LastName} - {emp.Salary}");
-                                }
-
-                                Console.Write("Which employee do you wish to edit?");
-                                if (!int.TryParse(Console.ReadLine(), out int employeeIndex) || employeeIndex < 0)
-                                {
-
-                                    //_employeeService.EditEmployee();
-                                    break;
-                                }
-                                else {
-                                    Console.WriteLine(employeeNotFoundMsg);
-                                    break;
-                                }
-                            }
+                            EditEmployee();
+                            break;
                         default:
-                            Console.WriteLine(invalidMsg);
+                            Console.WriteLine(_invalidMsg);
                             break;
                     }
 
 
                 }
-                else {
-                    Console.WriteLine(invalidMsg);
+                else
+                {
+                    Console.WriteLine(_invalidMsg);
                 }
 
             }
-            else {
-                Console.WriteLine(invalidMsg);
+            else
+            {
+                Console.WriteLine(_invalidMsg);
             }
 
 
 
         }
+
+        private void ShowEmployees()
+        {
+            var employees = _employeeService.GetAllEmployees();
+
+            for (int i = 0; i < employees.Count; i++)
+            {
+                var emp = employees[i];
+                Console.WriteLine($"{i + 1}. {emp.FirstName} {emp.LastName} - {emp.Salary}");
+            }
+        }
+
+        private void AddEmployee()
+        {
+            Console.Write("First name: ");
+            string firstName = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(firstName))
+            {
+                Console.WriteLine(_emptyOrInvalidInputMsg);
+                return;
+            }
+
+            Console.Write("Last name: ");
+            string lastName = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(lastName))
+            {
+                Console.WriteLine(_emptyOrInvalidInputMsg);
+                return;
+            }
+
+            Console.Write("Salary: ");
+            if (!int.TryParse(Console.ReadLine(), out int salary))
+            {
+                Console.WriteLine(_emptyOrInvalidInputMsg);
+                return;
+            }
+
+            var isAdded = _employeeService.AddEmployee(firstName, lastName, salary);
+            Console.WriteLine(isAdded ? "Add employee done!" : "Add employee failed!");
+        }
+
+        private void EditEmployee()
+        {
+            var employees = _employeeService.GetAllEmployees();
+
+            ShowEmployees();
+
+            Console.Write("Select employee to be edited: ");
+            if (!int.TryParse(Console.ReadLine(), out int index))
+            {
+                Console.WriteLine(_employeeNotFoundMsg);
+                return;
+            }
+
+            index = index - 1;
+
+            if (index < 0 || index >= employees.Count)
+            {
+                Console.WriteLine(_employeeNotFoundMsg);
+                return;
+            }
+
+            Console.Write("New first name: ");
+            string firstName = Console.ReadLine();
+
+            Console.Write("New last name: ");
+            string lastName = Console.ReadLine();
+
+            Console.Write("New salary: ");
+            if (!int.TryParse(Console.ReadLine(), out int salary))
+            {
+                Console.WriteLine(_invalidMsg);
+                return;
+            }
+
+            var isEdited = _employeeService.EditEmployee(firstName, lastName, salary, index);
+            Console.WriteLine(isEdited ? "Edit employee done!" : "Edit employee failed!");
+        }
     }
 }
+
