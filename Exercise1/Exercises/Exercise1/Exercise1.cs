@@ -6,5 +6,6 @@ namespace CSharpExercises.Exercises.Exercise1
 {
     internal class Exercise1
     {
+
     }
 }
