@@ -1,6 +1,7 @@
 ﻿using CSharpExercises.Exercises.Exercise1.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace CSharpExercises.Exercises.Exercise1.Services
@@ -16,19 +17,31 @@ namespace CSharpExercises.Exercises.Exercise1.Services
             {
                 FirstName = "Yang",
                 LastName = "Li",
-                Salaray = 30000
+                Salary = 30000
             });
 
             _employees.Add(new Employee
             {
                 FirstName = "Panpan",
                 LastName = "Li",
-                Salaray = 35000
+                Salary = 35000
             });
         }
 
         public List<Employee> GetAllEmployees() {
             return _employees;
+        }
+
+        public bool AddEmployee(string firstName, string lastName, int salary) {
+
+            _employees.Add(new Employee
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Salary = salary
+            });
+
+            return true;
         }
     }
 }

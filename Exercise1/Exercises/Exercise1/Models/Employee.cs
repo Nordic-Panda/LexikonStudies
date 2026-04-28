@@ -8,6 +8,6 @@ namespace CSharpExercises.Exercises.Exercise1.Models
     {
         public string FirstName { set; get; }
         public string LastName { set; get; }
-        public int Salaray { set; get; }
+        public int Salary { set; get; }
     }
 }
