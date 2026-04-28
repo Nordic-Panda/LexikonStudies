@@ -1,7 +1,4 @@
 ﻿using CSharpExercises.Exercises.Exercise1.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CSharpExercises.Exercises.Exercise1
 {

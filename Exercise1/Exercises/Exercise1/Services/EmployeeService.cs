@@ -1,8 +1,4 @@
 ﻿using CSharpExercises.Exercises.Exercise1.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace CSharpExercises.Exercises.Exercise1.Services
 {
@@ -12,20 +8,6 @@ namespace CSharpExercises.Exercises.Exercise1.Services
 
         public EmployeeService()
         {
-            // mock
-            _employees.Add(new Employee
-            {
-                FirstName = "Yang",
-                LastName = "Li",
-                Salary = 30000
-            });
-
-            _employees.Add(new Employee
-            {
-                FirstName = "Panpan",
-                LastName = "Li",
-                Salary = 35000
-            });
         }
 
         public List<Employee> GetAllEmployees() 
