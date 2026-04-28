@@ -1,4 +1,7 @@
 ﻿using CSharpExercises.Exercises.Exercise1;
+using CSharpExercises.Exercises.Exercise1.Services;
+
+var employeeService = new EmployeeService();
 
 string invalidMsg = "Invalid choice, please choose from menu";
 
@@ -19,7 +22,7 @@ while (true)
     switch (choice)
     {
         case 1:
-            var ex1 = new Exercise1();
+            var ex1 = new Exercise1(employeeService);
             ex1.Run();
             break;
 
