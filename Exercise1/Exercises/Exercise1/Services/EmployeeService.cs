@@ -4,7 +4,7 @@ namespace CSharpExercises.Exercises.Exercise1.Services
 {
     internal class EmployeeService
     {
-        private List<Employee> _employees = new();
+        private readonly List<Employee> _employees = new();
 
         public EmployeeService()
         {
