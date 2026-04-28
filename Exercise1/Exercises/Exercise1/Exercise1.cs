@@ -7,7 +7,7 @@ namespace CSharpExercises.Exercises.Exercise1
         private readonly EmployeeService _employeeService;
         private readonly string _invalidMsg = "Invalid choice. Please choose from menu";
         private readonly string _emptyOrInvalidInputMsg = "Empty or Invalid input. Please enter valid value";
-        private readonly string _employeeNotFoundMsg = "Employee not found. Please enter an valid index"; 
+        private readonly string _employeeNotFoundMsg = "Employee not found. Please enter an valid index";
 
         public Exercise1(EmployeeService employeeService)
         {
