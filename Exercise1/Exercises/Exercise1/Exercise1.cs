@@ -67,10 +67,16 @@ namespace CSharpExercises.Exercises.Exercise1
         {
             var employees = _employeeService.GetAllEmployees();
 
-            for (int i = 0; i < employees.Count; i++)
+            if (employees.Count == 0)
             {
-                var emp = employees[i];
-                Console.WriteLine($"{i + 1}. {emp.FirstName} {emp.LastName} - {emp.Salary}");
+                Console.WriteLine("No employee was found.");
+            }
+            else { 
+                for (int i = 0; i < employees.Count; i++)
+                {
+                    var emp = employees[i];
+                    Console.WriteLine($"{i + 1}. {emp.FirstName} {emp.LastName} - {emp.Salary}");
+                }
             }
         }
 
