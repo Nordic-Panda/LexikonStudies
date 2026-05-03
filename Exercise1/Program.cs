@@ -6,6 +6,9 @@ using CSharpExercises.Exercises.Exercise1.Services;
 using CSharpExercises.Exercises.Exercise2;
 using CSharpExercises.Interfaces;
 
+// For showing swedish letters
+Console.OutputEncoding = System.Text.Encoding.UTF8;
+
 var employeeService = new EmployeeService();
 
 while (true)
@@ -18,7 +21,7 @@ while (true)
     Console.WriteLine("2. Exercise 2 - Flow Control With Loops and Strings");
     Console.WriteLine("0. Exit");
 
-    int userChoice = InputHelper.GetIntMenuInput(MenuMessages.SelectAnOption, 0, 2);
+    int userChoice = InputHelper.GetIntInput(MenuMessages.SelectAnOption, 0, 2, ErrorMessages.InvalidMsg);
 
     IExercise ex = null;
 

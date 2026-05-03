@@ -31,7 +31,7 @@ namespace CSharpExercises.Exercises.Exercise2
                 switch (userChoice)
                 {
                     case 1:
-                        GetTicketPriceByAge();
+                        YouthOrSenior();
                         break;
                     case 2:
                         break;
@@ -48,7 +48,41 @@ namespace CSharpExercises.Exercises.Exercise2
             }
         }
 
-        private void GetTicketPriceByAge() 
+        public void YouthOrSenior() 
+        {
+            bool running = true;
+
+            while (running)
+            {
+                Console.WriteLine(MenuMessages.MenuSeparator);
+                Console.WriteLine("     Welcome to exercise 2.1 - Youth Or Senior");
+                Console.WriteLine(MenuMessages.MenuSeparator);
+
+                Console.WriteLine("Ticket type:");
+                Console.WriteLine("1. Single ticket");
+                Console.WriteLine("2. Group ticket");
+                Console.WriteLine(MenuMessages.ReturnToExercise);
+
+                int userChoice = InputHelper.GetIntInput(MenuMessages.SelectAnOption, 0, 2, ErrorMessages.InvalidMsg);
+
+                switch (userChoice)
+                {
+                    case 1:
+                        GetSingleTicketPriceByAge();
+                        break;
+                    case 2:
+                        break;
+                    case 0:
+                        running = false;
+                        break;
+                    default:
+                        Console.WriteLine(ErrorMessages.InvalidMsg);
+                        break;
+                }
+            }
+        }
+
+        private void GetSingleTicketPriceByAge() 
         {
             int age = InputHelper.GetIntInput(MenuMessages.EnterAge, 0, 150, ErrorMessages.AgeInvalidMsg);
 
