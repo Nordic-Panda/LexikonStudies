@@ -1,11 +1,10 @@
-﻿using CSharpExercises.Exercises.Exercise1;
+﻿using CSharpExercises.Constants.ErrorMessages;
+using CSharpExercises.Exercises.Exercise1;
 using CSharpExercises.Exercises.Exercise1.Services;
 using CSharpExercises.Exercises.Exercise2;
 using CSharpExercises.Interfaces;
 
 var employeeService = new EmployeeService();
-
-string invalidMsg = "Invalid choice, please choose from menu";
 
 while (true)
 {
@@ -18,7 +17,7 @@ while (true)
 
     if (!int.TryParse(Console.ReadLine(), out int choice))
     {
-        Console.WriteLine(invalidMsg);
+        Console.WriteLine(ErrorMessages.InvalidMsg);
         continue;
     }
 
@@ -38,7 +37,7 @@ while (true)
             return;
 
         default:
-            Console.WriteLine(invalidMsg);
+            Console.WriteLine(ErrorMessages.InvalidMsg);
             break;
     }
 

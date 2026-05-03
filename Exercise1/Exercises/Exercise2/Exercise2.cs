@@ -1,4 +1,5 @@
-﻿using CSharpExercises.Interfaces;
+﻿using CSharpExercises.Constants.ErrorMessages;
+using CSharpExercises.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,6 +22,20 @@ namespace CSharpExercises.Exercises.Exercise2
                 Console.WriteLine("2. Repeat 10 times");
                 Console.WriteLine("3. The third word");
                 Console.WriteLine("0. Return to main menu");
+
+                string userMenuInput = Console.ReadLine();
+
+                if (int.TryParse(userMenuInput, out int userChoice))
+                {
+
+
+                }
+                else
+                {
+                    Console.WriteLine(ErrorMessages.InvalidMsg);
+                }
+
+
             }
         }
     }
