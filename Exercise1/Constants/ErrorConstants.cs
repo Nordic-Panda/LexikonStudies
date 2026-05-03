@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CSharpExercises.Constants.ErrorMessages
+﻿namespace CSharpExercises.Constants.ErrorConstants
 {
-    public static class ErrorMessages
+    public static class ErrorConstants
     {
         public const string InvalidMsg = "Invalid choice, please choose from menu";
         public const string EmptyOrInvalidInputMsg = "Empty or Invalid input. Please enter valid value";
         public const string EmployeeNotFoundMsg = "Employee not found. Please enter an valid index";
+        public const string AgeInvalidMsg = "Please enter an valid age";
+        public const string GroupSizeInvalidMsg = "Please enter a group size between 2 to 10";
     }
 }

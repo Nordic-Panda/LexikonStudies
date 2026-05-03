@@ -1,10 +1,8 @@
-﻿using CSharpExercises.Constants.ErrorMessages;
-
-namespace CSharpExercises.Common.InputHelper
+﻿namespace CSharpExercises.Common.InputHelper
 {
     public static class InputHelper
     {
-        public static int GetIntMenuInput(string menuMsg, int min, int max)
+        public static int GetIntInput(string menuMsg, int min, int max, string errMsg)
         {
             while (true)
             {
@@ -17,7 +15,7 @@ namespace CSharpExercises.Common.InputHelper
                         return inputValue;
                 }
 
-                Console.WriteLine(ErrorMessages.InvalidMsg);
+                Console.WriteLine(errMsg);
             }
         }
     }
