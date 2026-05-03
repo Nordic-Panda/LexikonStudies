@@ -1,32 +1,39 @@
 ﻿using CSharpExercises.Common.InputHelper;
-using CSharpExercises.Constants.ErrorMessages;
-using CSharpExercises.Constants.MenuMessages;
-using CSharpExercises.Constants.PriceMessages;
+using CSharpExercises.Constants.ErrorConstants;
+using CSharpExercises.Constants.MenuConstants;
+using CSharpExercises.Constants.PriceConstants;
 using CSharpExercises.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace CSharpExercises.Exercises.Exercise2
 {
     internal class Exercise2 : IExercise
     {
+        private const int _minAge = 0;
+        private const int _maxAge = 150;
+        private const int _youthTicketPrice = 80;
+        private const int _seniorTicketPrice = 90;
+        private const int _standardTicketPrice = 120;
+
         public void Run()
         {
             bool running = true;
 
             while (running)
             {
-                Console.WriteLine(MenuMessages.MenuSeparator);
+                Console.WriteLine(MenuConstants.MenuSeparator);
                 Console.WriteLine("     Welcome to Exercise 2 - Flow Control With Loops and Strings");
-                Console.WriteLine(MenuMessages.MenuSeparator);
+                Console.WriteLine(MenuConstants.MenuSeparator);
 
                 Console.WriteLine("1. Youth or Senior");
                 Console.WriteLine("2. Repeat 10 times");
                 Console.WriteLine("3. The third word");
-                Console.WriteLine(MenuMessages.ReturnToMain); 
+                Console.WriteLine(MenuConstants.ReturnToMain); 
 
-                int userChoice = InputHelper.GetIntInput(MenuMessages.SelectAnOption, 0, 3, ErrorMessages.InvalidMsg);
+                int userChoice = InputHelper.GetIntInput(MenuConstants.SelectAnOption, 0, 3, ErrorConstants.InvalidMsg);
 
                 switch (userChoice)
                 {
@@ -41,7 +48,7 @@ namespace CSharpExercises.Exercises.Exercise2
                         running = false;
                         break;
                     default:
-                        Console.WriteLine(ErrorMessages.InvalidMsg);
+                        Console.WriteLine(ErrorConstants.InvalidMsg);
                         break;
                 }
 
@@ -54,21 +61,21 @@ namespace CSharpExercises.Exercises.Exercise2
 
             while (running)
             {
-                Console.WriteLine(MenuMessages.MenuSeparator);
+                Console.WriteLine(MenuConstants.MenuSeparator);
                 Console.WriteLine("     Welcome to exercise 2.1 - Youth Or Senior");
-                Console.WriteLine(MenuMessages.MenuSeparator);
+                Console.WriteLine(MenuConstants.MenuSeparator);
 
                 Console.WriteLine("Ticket type:");
                 Console.WriteLine("1. Single ticket");
                 Console.WriteLine("2. Group ticket");
-                Console.WriteLine(MenuMessages.ReturnToExercise);
+                Console.WriteLine(MenuConstants.ReturnToExercise);
 
-                int userChoice = InputHelper.GetIntInput(MenuMessages.SelectAnOption, 0, 2, ErrorMessages.InvalidMsg);
+                int userChoice = InputHelper.GetIntInput(MenuConstants.SelectAnOption, 0, 2, ErrorConstants.InvalidMsg);
 
                 switch (userChoice)
                 {
                     case 1:
-                        GetSingleTicketPriceByAge();
+                        GetSingleTicketPrice();
                         break;
                     case 2:
                         break;
@@ -76,27 +83,51 @@ namespace CSharpExercises.Exercises.Exercise2
                         running = false;
                         break;
                     default:
-                        Console.WriteLine(ErrorMessages.InvalidMsg);
+                        Console.WriteLine(ErrorConstants.InvalidMsg);
                         break;
                 }
             }
         }
 
-        private void GetSingleTicketPriceByAge() 
+        private void GetSingleTicketPrice() 
         {
-            int age = InputHelper.GetIntInput(MenuMessages.EnterAge, 0, 150, ErrorMessages.AgeInvalidMsg);
+            int age = InputHelper.GetIntInput(MenuConstants.EnterAge, _minAge, _maxAge, ErrorConstants.AgeInvalidMsg);
+            int price = GetTicketPriceByAge(age);
 
-            if (age < 20)
+            if (price == _youthTicketPrice)
             {
-                Console.WriteLine(PriceMessages.YouthPrice);
+                Console.WriteLine(PriceConstants.YouthPrice);
             }
-            else if (age > 64)
+            else if (price == _seniorTicketPrice)
             {
-                Console.WriteLine(PriceMessages.SeniorPrice);
+                Console.WriteLine(PriceConstants.SeniorPrice);
             }
             else 
             {
-                Console.WriteLine(PriceMessages.StandardPrice);
+                Console.WriteLine(PriceConstants.StandardPrice);
+            }
+        }
+
+        private static int GetTicketPriceByAge(int age)
+        {
+            if (age < 20)
+                return _youthTicketPrice;
+            else if (age > 64)
+                return _seniorTicketPrice; 
+            else
+                return _standardTicketPrice;
+        }
+
+        private void GetGroupTicketPriceByAge()
+        {
+            int sum = 0;
+            int size = InputHelper.GetIntInput(MenuConstants.EnterGroupSize, 0, 10, ErrorConstants.GroupSizeInvalidMsg);
+
+            for (int i = 0; i < size; i++)
+            {
+                int age = InputHelper.GetIntInput($"Age for customer {i + 1}:", _minAge, _maxAge, ErrorConstants.GroupSizeInvalidMsg);
+                int price = GetTicketPriceByAge(age);
+                sum += price;
             }
         }
     }

@@ -1,6 +1,6 @@
-﻿namespace CSharpExercises.Constants.PriceMessages
+﻿namespace CSharpExercises.Constants.PriceConstants
 {
-    public static class PriceMessages
+    public static class PriceConstants
     {
         public const string YouthPrice = "Ungdomspris: 80kr";
         public const string SeniorPrice = "Pensionärspris: 90kr";

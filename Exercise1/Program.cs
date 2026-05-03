@@ -1,6 +1,6 @@
 ﻿using CSharpExercises.Common.InputHelper;
-using CSharpExercises.Constants.ErrorMessages;
-using CSharpExercises.Constants.MenuMessages;
+using CSharpExercises.Constants.ErrorConstants;
+using CSharpExercises.Constants.MenuConstants;
 using CSharpExercises.Exercises.Exercise1;
 using CSharpExercises.Exercises.Exercise1.Services;
 using CSharpExercises.Exercises.Exercise2;
@@ -13,15 +13,15 @@ var employeeService = new EmployeeService();
 
 while (true)
 {
-    Console.WriteLine(MenuMessages.MenuHeaderLine);
+    Console.WriteLine(MenuConstants.MenuHeaderLine);
     Console.WriteLine("     C# Exercises Menu");
-    Console.WriteLine(MenuMessages.MenuHeaderLine);
+    Console.WriteLine(MenuConstants.MenuHeaderLine);
     
     Console.WriteLine("1. Exercise 1 - Restaurant Register");
     Console.WriteLine("2. Exercise 2 - Flow Control With Loops and Strings");
     Console.WriteLine("0. Exit");
 
-    int userChoice = InputHelper.GetIntInput(MenuMessages.SelectAnOption, 0, 2, ErrorMessages.InvalidMsg);
+    int userChoice = InputHelper.GetIntInput(MenuConstants.SelectAnOption, 0, 2, ErrorConstants.InvalidMsg);
 
     IExercise ex = null;
 
@@ -39,7 +39,7 @@ while (true)
             return;
 
         default:
-            Console.WriteLine(ErrorMessages.InvalidMsg);
+            Console.WriteLine(ErrorConstants.InvalidMsg);
             break;
     }
 
