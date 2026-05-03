@@ -3,10 +3,6 @@ using CSharpExercises.Constants.ErrorConstants;
 using CSharpExercises.Constants.MenuConstants;
 using CSharpExercises.Constants.PriceConstants;
 using CSharpExercises.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
 
 namespace CSharpExercises.Exercises.Exercise2
 {
@@ -29,7 +25,10 @@ namespace CSharpExercises.Exercises.Exercise2
                 Console.WriteLine(MenuConstants.MenuSeparator);
 
                 Console.WriteLine("1. Youth or Senior");
+                Console.WriteLine("   - Check ticket type depending on age");
+                Console.WriteLine("   - Supports both single and group tickets");
                 Console.WriteLine("2. Repeat 10 times");
+                Console.WriteLine("   - UserInput will be repeated 10 times with loop");
                 Console.WriteLine("3. The third word");
                 Console.WriteLine(MenuConstants.ReturnToMain); 
 
