@@ -1,4 +1,5 @@
-﻿using CSharpExercises.Constants.ErrorMessages;
+﻿using CSharpExercises.Common.InputHelper;
+using CSharpExercises.Constants.ErrorMessages;
 using CSharpExercises.Constants.MenuMessages;
 using CSharpExercises.Exercises.Exercise1.Services;
 using CSharpExercises.Interfaces;
@@ -22,51 +23,35 @@ namespace CSharpExercises.Exercises.Exercise1
                 Console.WriteLine(MenuMessages.MenuSeparator);
                 Console.WriteLine("     Welcome to Exercise 1 - Restaurant Register");
                 Console.WriteLine(MenuMessages.MenuSeparator);
-                Console.WriteLine("Please select from below menu (0-4):");
+               
                 Console.WriteLine("1. Show all employees info");
                 Console.WriteLine("2. Add an employee");
                 Console.WriteLine("3. Edit an employee");
                 Console.WriteLine("4. Remove an employee");
                 Console.WriteLine(MenuMessages.ReturnToMain);
 
-                string userMenuInput = Console.ReadLine();
+                int userChoice = InputHelper.GetIntMenuInput(MenuMessages.SelectAnOption, 0, 4);
 
-                if (int.TryParse(userMenuInput, out int userChoice))
+                switch (userChoice)
                 {
-                    if (userChoice >= 0 && userChoice <= 4)
-                    {
-                        switch (userChoice)
-                        {
-                            case 1:
-                                ShowEmployees();
-                                break;
-                            case 2:
-                                AddEmployee();
-                                break;
-                            case 3:
-                                EditEmployee();
-                                break;
-                            case 4:
-                                RemoveEmployee();
-                                break;
-                            case 0:
-                                running = false;
-                                break;
-                            default:
-                                Console.WriteLine(ErrorMessages.InvalidMsg);
-                                break;
-                        }
-
-                    }
-                    else
-                    {
+                    case 1:
+                        ShowEmployees();
+                        break;
+                    case 2:
+                        AddEmployee();
+                        break;
+                    case 3:
+                        EditEmployee();
+                        break;
+                    case 4:
+                        RemoveEmployee();
+                        break;
+                    case 0:
+                        running = false;
+                        break;
+                    default:
                         Console.WriteLine(ErrorMessages.InvalidMsg);
-                    }
-
-                }
-                else
-                {
-                    Console.WriteLine(ErrorMessages.InvalidMsg);
+                        break;
                 }
             }
 
