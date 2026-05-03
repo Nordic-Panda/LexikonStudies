@@ -18,5 +18,21 @@
                 Console.WriteLine(errMsg);
             }
         }
+
+        public static string GetStringInput(string menuMsg, string errMsg)
+        {
+            while (true) 
+            {
+                Console.WriteLine(menuMsg);
+                string userInput = Console.ReadLine() ?? "";
+
+                if (!String.IsNullOrWhiteSpace(userInput))
+                { 
+                    return userInput;
+                }
+
+                Console.WriteLine(errMsg);
+            }
+        }
     }
 }

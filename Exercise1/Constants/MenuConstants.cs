@@ -10,5 +10,6 @@
         public const string EnterAge = "Please enter age:";
         public const string ReturnToExercise = "0. Return to exercise menu";
         public const string EnterGroupSize = "Please enter group size:";
+        public const string InputToRepeat = "What should we repeat?";
     }
 }

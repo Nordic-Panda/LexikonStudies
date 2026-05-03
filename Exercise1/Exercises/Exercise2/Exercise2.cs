@@ -3,10 +3,6 @@ using CSharpExercises.Constants.ErrorConstants;
 using CSharpExercises.Constants.MenuConstants;
 using CSharpExercises.Constants.PriceConstants;
 using CSharpExercises.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
 
 namespace CSharpExercises.Exercises.Exercise2
 {
@@ -17,6 +13,8 @@ namespace CSharpExercises.Exercises.Exercise2
         private const int _youthTicketPrice = 80;
         private const int _seniorTicketPrice = 90;
         private const int _standardTicketPrice = 120;
+
+        private const int _repeatCount = 10;
 
         public void Run()
         {
@@ -29,7 +27,10 @@ namespace CSharpExercises.Exercises.Exercise2
                 Console.WriteLine(MenuConstants.MenuSeparator);
 
                 Console.WriteLine("1. Youth or Senior");
+                Console.WriteLine("   - Check ticket type depending on age");
+                Console.WriteLine("   - Supports both single and group tickets");
                 Console.WriteLine("2. Repeat 10 times");
+                Console.WriteLine("   - UserInput will be repeated 10 times with loop");
                 Console.WriteLine("3. The third word");
                 Console.WriteLine(MenuConstants.ReturnToMain); 
 
@@ -41,6 +42,7 @@ namespace CSharpExercises.Exercises.Exercise2
                         YouthOrSenior();
                         break;
                     case 2:
+                        RepeatUserInput();
                         break;
                     case 3:
                         break;
@@ -55,7 +57,7 @@ namespace CSharpExercises.Exercises.Exercise2
             }
         }
 
-        public static void YouthOrSenior() 
+        private static void YouthOrSenior() 
         {
             bool running = true;
 
@@ -155,6 +157,22 @@ namespace CSharpExercises.Exercises.Exercise2
                 Console.WriteLine($"{PriceConstants.TotalPrice} {sum} kr");
                 Console.WriteLine(MenuConstants.MenuStarLine);
             }
+        }
+
+        private static void RepeatUserInput() 
+        {
+            string userInput = InputHelper.GetStringInput(MenuConstants.InputToRepeat, ErrorConstants.EmptyOrInvalidInputMsg);
+            string output = "";
+            for (int i = 0; i < _repeatCount; i++)
+            {
+                output += $"{i + 1}. {userInput}";
+
+                // avoid having , on the last run
+                if (i < _repeatCount - 1)
+                    output += ", ";
+            }
+
+            Console.WriteLine(output);
         }
     }
 }
