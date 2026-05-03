@@ -1,13 +1,14 @@
-﻿using CSharpExercises.Exercises.Exercise1.Services;
+﻿using CSharpExercises.Common.InputHelper;
+using CSharpExercises.Constants.ErrorConstants;
+using CSharpExercises.Constants.MenuConstants;
+using CSharpExercises.Exercises.Exercise1.Services;
+using CSharpExercises.Interfaces;
 
 namespace CSharpExercises.Exercises.Exercise1
 {
-    internal class Exercise1
+    internal class Exercise1 : IExercise
     {
         private readonly EmployeeService _employeeService;
-        private readonly string _invalidMsg = "Invalid choice. Please choose from menu";
-        private readonly string _emptyOrInvalidInputMsg = "Empty or Invalid input. Please enter valid value";
-        private readonly string _employeeNotFoundMsg = "Employee not found. Please enter an valid index";
 
         public Exercise1(EmployeeService employeeService)
         {
@@ -15,48 +16,43 @@ namespace CSharpExercises.Exercises.Exercise1
         }
         public void Run()
         {
-            Console.WriteLine("Welcome to Exercise 1 - Restaurant Register");
-            Console.WriteLine("Please select from below menu (1-4):");
-            Console.WriteLine("1. Show all employees info");
-            Console.WriteLine("2. Add an employee");
-            Console.WriteLine("3. Edit an employee");
-            Console.WriteLine("4. Remove an employee");
+            bool running = true;
 
-            string userMenuInput = Console.ReadLine();
-
-            if (int.TryParse(userMenuInput, out int userChoice))
+            while (running)
             {
-                if (userChoice >= 1 && userChoice <= 4)
-                {
-                    switch (userChoice)
-                    {
-                        case 1:
-                            ShowEmployees();
-                            break;
-                        case 2:
-                            AddEmployee();
-                            break;
-                        case 3:
-                            EditEmployee();
-                            break;
-                        case 4:
-                            RemoveEmployee();
-                            break;
-                        default:
-                            Console.WriteLine(_invalidMsg);
-                            break;
-                    }
+                Console.WriteLine(MenuConstants.MenuSeparator);
+                Console.WriteLine("     Welcome to Exercise 1 - Restaurant Register");
+                Console.WriteLine(MenuConstants.MenuSeparator);
+               
+                Console.WriteLine("1. Show all employees info");
+                Console.WriteLine("2. Add an employee");
+                Console.WriteLine("3. Edit an employee");
+                Console.WriteLine("4. Remove an employee");
+                Console.WriteLine(MenuConstants.ReturnToMain);
 
-                }
-                else
-                {
-                    Console.WriteLine(_invalidMsg);
-                }
+                int userChoice = InputHelper.GetIntInput(MenuConstants.SelectAnOption, 0, 4, ErrorConstants.InvalidMsg);
 
-            }
-            else
-            {
-                Console.WriteLine(_invalidMsg);
+                switch (userChoice)
+                {
+                    case 1:
+                        ShowEmployees();
+                        break;
+                    case 2:
+                        AddEmployee();
+                        break;
+                    case 3:
+                        EditEmployee();
+                        break;
+                    case 4:
+                        RemoveEmployee();
+                        break;
+                    case 0:
+                        running = false;
+                        break;
+                    default:
+                        Console.WriteLine(ErrorConstants.InvalidMsg);
+                        break;
+                }
             }
 
 
@@ -87,7 +83,7 @@ namespace CSharpExercises.Exercises.Exercise1
 
             if (string.IsNullOrWhiteSpace(firstName))
             {
-                Console.WriteLine(_emptyOrInvalidInputMsg);
+                Console.WriteLine(ErrorConstants.EmptyOrInvalidInputMsg);
                 return;
             }
 
@@ -96,14 +92,14 @@ namespace CSharpExercises.Exercises.Exercise1
 
             if (string.IsNullOrWhiteSpace(lastName))
             {
-                Console.WriteLine(_emptyOrInvalidInputMsg);
+                Console.WriteLine(ErrorConstants.EmptyOrInvalidInputMsg);
                 return;
             }
 
             Console.Write("Salary: ");
             if (!int.TryParse(Console.ReadLine(), out int salary))
             {
-                Console.WriteLine(_emptyOrInvalidInputMsg);
+                Console.WriteLine(ErrorConstants.EmptyOrInvalidInputMsg);
                 return;
             }
 
@@ -120,7 +116,7 @@ namespace CSharpExercises.Exercises.Exercise1
             Console.Write("Select employee to be edited: ");
             if (!int.TryParse(Console.ReadLine(), out int index))
             {
-                Console.WriteLine(_employeeNotFoundMsg);
+                Console.WriteLine(ErrorConstants.EmployeeNotFoundMsg);
                 return;
             }
 
@@ -128,7 +124,7 @@ namespace CSharpExercises.Exercises.Exercise1
 
             if (index < 0 || index >= employees.Count)
             {
-                Console.WriteLine(_employeeNotFoundMsg);
+                Console.WriteLine(ErrorConstants.EmployeeNotFoundMsg);
                 return;
             }
 
@@ -141,7 +137,7 @@ namespace CSharpExercises.Exercises.Exercise1
             Console.Write("New salary: ");
             if (!int.TryParse(Console.ReadLine(), out int salary))
             {
-                Console.WriteLine(_invalidMsg);
+                Console.WriteLine(ErrorConstants.InvalidMsg);
                 return;
             }
 
@@ -158,7 +154,7 @@ namespace CSharpExercises.Exercises.Exercise1
             Console.Write("Select employee to be removed: ");
             if (!int.TryParse(Console.ReadLine(), out int index))
             {
-                Console.WriteLine(_employeeNotFoundMsg);
+                Console.WriteLine(ErrorConstants.EmployeeNotFoundMsg);
                 return;
             }
 
@@ -166,7 +162,7 @@ namespace CSharpExercises.Exercises.Exercise1
 
             if (index < 0 || index >= employees.Count)
             {
-                Console.WriteLine(_employeeNotFoundMsg);
+                Console.WriteLine(ErrorConstants.EmployeeNotFoundMsg);
                 return;
             }
 
