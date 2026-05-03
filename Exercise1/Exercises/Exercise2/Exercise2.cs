@@ -148,7 +148,7 @@ namespace CSharpExercises.Exercises.Exercise2
 
                 Console.WriteLine(MenuConstants.MenuStarLine);
                 Console.WriteLine("Tickets Summary:");
-                Console.WriteLine($"Total tickets: {size}");
+                Console.WriteLine($"Group size: {size}");
                 Console.WriteLine($"Youth tickets ({_youthTicketPrice} kr): {youthCount}");
                 Console.WriteLine($"Senior tickets ({_seniorTicketPrice} kr): {seniorCount}");
                 Console.WriteLine($"Standard tickets ({_standardTicketPrice} kr): {standardCount}");
