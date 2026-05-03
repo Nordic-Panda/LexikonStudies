@@ -1,4 +1,5 @@
 ﻿using CSharpExercises.Constants.ErrorMessages;
+using CSharpExercises.Constants.MenuMessages;
 using CSharpExercises.Exercises.Exercise1;
 using CSharpExercises.Exercises.Exercise1.Services;
 using CSharpExercises.Exercises.Exercise2;
@@ -8,9 +9,9 @@ var employeeService = new EmployeeService();
 
 while (true)
 {
-    Console.WriteLine("=================================");
+    Console.WriteLine(MenuMessages.MenuHeaderLine);
     Console.WriteLine("     C# Exercises Menu");
-    Console.WriteLine("=================================");
+    Console.WriteLine(MenuMessages.MenuHeaderLine);
     Console.WriteLine("1. Exercise 1 - Restaurant Register");
     Console.WriteLine("2. Exercise 2 - Flow Control With Loops and Strings");
     Console.WriteLine("0. Exit");

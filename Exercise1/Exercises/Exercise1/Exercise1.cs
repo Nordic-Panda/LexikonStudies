@@ -1,4 +1,5 @@
 ﻿using CSharpExercises.Constants.ErrorMessages;
+using CSharpExercises.Constants.MenuMessages;
 using CSharpExercises.Exercises.Exercise1.Services;
 using CSharpExercises.Interfaces;
 
@@ -18,15 +19,15 @@ namespace CSharpExercises.Exercises.Exercise1
 
             while (running)
             {
-                Console.WriteLine("---------------------------------");
+                Console.WriteLine(MenuMessages.MenuSeparator);
                 Console.WriteLine("     Welcome to Exercise 1 - Restaurant Register");
-                Console.WriteLine("---------------------------------");
+                Console.WriteLine(MenuMessages.MenuSeparator);
                 Console.WriteLine("Please select from below menu (0-4):");
                 Console.WriteLine("1. Show all employees info");
                 Console.WriteLine("2. Add an employee");
                 Console.WriteLine("3. Edit an employee");
                 Console.WriteLine("4. Remove an employee");
-                Console.WriteLine("0. Return to main menu");
+                Console.WriteLine(MenuMessages.ReturnToMain);
 
                 string userMenuInput = Console.ReadLine();
 
