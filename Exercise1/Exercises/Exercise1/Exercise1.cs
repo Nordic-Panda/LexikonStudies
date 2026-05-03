@@ -30,7 +30,7 @@ namespace CSharpExercises.Exercises.Exercise1
                 Console.WriteLine("4. Remove an employee");
                 Console.WriteLine(MenuMessages.ReturnToMain);
 
-                int userChoice = InputHelper.GetIntMenuInput(MenuMessages.SelectAnOption, 0, 4);
+                int userChoice = InputHelper.GetIntInput(MenuMessages.SelectAnOption, 0, 4, ErrorMessages.InvalidMsg);
 
                 switch (userChoice)
                 {

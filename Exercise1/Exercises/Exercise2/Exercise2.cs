@@ -1,6 +1,7 @@
 ﻿using CSharpExercises.Common.InputHelper;
 using CSharpExercises.Constants.ErrorMessages;
 using CSharpExercises.Constants.MenuMessages;
+using CSharpExercises.Constants.PriceMessages;
 using CSharpExercises.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace CSharpExercises.Exercises.Exercise2
                 Console.WriteLine("3. The third word");
                 Console.WriteLine(MenuMessages.ReturnToMain); 
 
-                int userChoice = InputHelper.GetIntMenuInput(MenuMessages.SelectAnOption, 0, 3);
+                int userChoice = InputHelper.GetIntInput(MenuMessages.SelectAnOption, 0, 3, ErrorMessages.InvalidMsg);
 
                 switch (userChoice)
                 {
@@ -43,6 +44,16 @@ namespace CSharpExercises.Exercises.Exercise2
                         break;
                 }
 
+            }
+        }
+
+        private void GetTicketPriceByAge() 
+        {
+            int userChoice = InputHelper.GetIntInput(MenuMessages.EnterAge, 0, 150, ErrorMessages.AgeInvalidMsg);
+
+            if (userChoice < 20)
+            {
+                Console.WriteLine(PriceMessages.YouthPrice);
             }
         }
     }
