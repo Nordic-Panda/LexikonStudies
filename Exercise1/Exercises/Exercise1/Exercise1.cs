@@ -1,8 +1,9 @@
 ﻿using CSharpExercises.Exercises.Exercise1.Services;
+using CSharpExercises.Interfaces;
 
 namespace CSharpExercises.Exercises.Exercise1
 {
-    internal class Exercise1
+    internal class Exercise1 : IExercise
     {
         private readonly EmployeeService _employeeService;
         private readonly string _invalidMsg = "Invalid choice. Please choose from menu";
