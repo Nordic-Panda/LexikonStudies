@@ -16,6 +16,8 @@ namespace CSharpExercises.Exercises.Exercise2
 
         private const int _repeatCount = 10;
 
+        private const int _wordToSelect = 3;
+
         public void Run()
         {
             bool running = true;
@@ -32,6 +34,8 @@ namespace CSharpExercises.Exercises.Exercise2
                 Console.WriteLine("2. Repeat 10 times");
                 Console.WriteLine("   - UserInput will be repeated 10 times with loop");
                 Console.WriteLine("3. The third word");
+                Console.WriteLine("   - User enters a long string with spaces (at least 3 words)");
+                Console.WriteLine("   - String will be splited and 3rd word will be shown");
                 Console.WriteLine(MenuConstants.ReturnToMain); 
 
                 int userChoice = InputHelper.GetIntInput(MenuConstants.SelectAnOption, 0, 3, ErrorConstants.InvalidMsg);
@@ -45,6 +49,7 @@ namespace CSharpExercises.Exercises.Exercise2
                         RepeatUserInput();
                         break;
                     case 3:
+                        SplitString();
                         break;
                     case 0:
                         running = false;
@@ -96,7 +101,9 @@ namespace CSharpExercises.Exercises.Exercise2
         {
             int age = InputHelper.GetIntInput(MenuConstants.EnterAge, _minAge, _maxAge, ErrorConstants.AgeInvalidMsg);
             string message = GetTicketMessageByAge(age);
+            Console.WriteLine(MenuConstants.MenuStarLine);
             Console.WriteLine(message);
+            Console.WriteLine(MenuConstants.MenuStarLine);
         }
 
         private static int GetTicketPriceByAge(int age)
@@ -174,5 +181,17 @@ namespace CSharpExercises.Exercises.Exercise2
 
             Console.WriteLine(output);
         }
+
+        private static void SplitString() 
+        {
+            var userInput = InputHelper.GetStringInput(MenuConstants.EnterThreeWords, ErrorConstants.EmptyOrInvalidInputMsg, 3);
+
+            var stringArr = userInput.Split(" ");
+
+            Console.WriteLine(MenuConstants.MenuStarLine);
+            Console.WriteLine($"3rd word is: {stringArr[_wordToSelect - 1]}");
+            Console.WriteLine(MenuConstants.MenuStarLine);
+        }
+
     }
 }
