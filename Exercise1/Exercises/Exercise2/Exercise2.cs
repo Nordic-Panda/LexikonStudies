@@ -31,6 +31,7 @@ namespace CSharpExercises.Exercises.Exercise2
                 switch (userChoice)
                 {
                     case 1:
+                        GetTicketPriceByAge();
                         break;
                     case 2:
                         break;
@@ -49,11 +50,19 @@ namespace CSharpExercises.Exercises.Exercise2
 
         private void GetTicketPriceByAge() 
         {
-            int userChoice = InputHelper.GetIntInput(MenuMessages.EnterAge, 0, 150, ErrorMessages.AgeInvalidMsg);
+            int age = InputHelper.GetIntInput(MenuMessages.EnterAge, 0, 150, ErrorMessages.AgeInvalidMsg);
 
-            if (userChoice < 20)
+            if (age < 20)
             {
                 Console.WriteLine(PriceMessages.YouthPrice);
+            }
+            else if (age > 64)
+            {
+                Console.WriteLine(PriceMessages.SeniorPrice);
+            }
+            else 
+            {
+                Console.WriteLine(PriceMessages.StandardPrice);
             }
         }
     }
