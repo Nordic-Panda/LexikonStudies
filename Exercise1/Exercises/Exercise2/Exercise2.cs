@@ -23,48 +23,25 @@ namespace CSharpExercises.Exercises.Exercise2
                 Console.WriteLine("1. Youth or Senior");
                 Console.WriteLine("2. Repeat 10 times");
                 Console.WriteLine("3. The third word");
-                Console.WriteLine(MenuMessages.ReturnToMain);
+                Console.WriteLine(MenuMessages.ReturnToMain); 
 
                 int userChoice = InputHelper.GetIntMenuInput(MenuMessages.SelectAnOption, 0, 3);
 
-                //if (int.TryParse(userMenuInput, out int userChoice))
-                //{
-                //    if (userChoice >= 0 && userChoice <= 4)
-                //    {
-                //        switch (userChoice)
-                //        {
-                //            case 1:
-                //                ShowEmployees();
-                //                break;
-                //            case 2:
-                //                AddEmployee();
-                //                break;
-                //            case 3:
-                //                EditEmployee();
-                //                break;
-                //            case 4:
-                //                RemoveEmployee();
-                //                break;
-                //            case 0:
-                //                running = false;
-                //                break;
-                //            default:
-                //                Console.WriteLine(ErrorMessages.InvalidMsg);
-                //                break;
-                //        }
-
-                //    }
-                //    else
-                //    {
-                //        Console.WriteLine(ErrorMessages.InvalidMsg);
-                //    }
-
-                //}
-                //else
-                //{
-                //    Console.WriteLine(ErrorMessages.InvalidMsg);
-                //}
-
+                switch (userChoice)
+                {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 0:
+                        running = false;
+                        break;
+                    default:
+                        Console.WriteLine(ErrorMessages.InvalidMsg);
+                        break;
+                }
 
             }
         }
