@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CSharpExercises.Constants.ErrorMessages
 {
-    public class ErrorMessages
+    public static class ErrorMessages
     {
         public const string InvalidMsg = "Invalid choice, please choose from menu";
         public const string EmptyOrInvalidInputMsg = "Empty or Invalid input. Please enter valid value";

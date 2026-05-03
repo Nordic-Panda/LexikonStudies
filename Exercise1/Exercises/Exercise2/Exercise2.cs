@@ -25,15 +25,43 @@ namespace CSharpExercises.Exercises.Exercise2
 
                 string userMenuInput = Console.ReadLine();
 
-                if (int.TryParse(userMenuInput, out int userChoice))
-                {
+                //if (int.TryParse(userMenuInput, out int userChoice))
+                //{
+                //    if (userChoice >= 0 && userChoice <= 4)
+                //    {
+                //        switch (userChoice)
+                //        {
+                //            case 1:
+                //                ShowEmployees();
+                //                break;
+                //            case 2:
+                //                AddEmployee();
+                //                break;
+                //            case 3:
+                //                EditEmployee();
+                //                break;
+                //            case 4:
+                //                RemoveEmployee();
+                //                break;
+                //            case 0:
+                //                running = false;
+                //                break;
+                //            default:
+                //                Console.WriteLine(ErrorMessages.InvalidMsg);
+                //                break;
+                //        }
 
+                //    }
+                //    else
+                //    {
+                //        Console.WriteLine(ErrorMessages.InvalidMsg);
+                //    }
 
-                }
-                else
-                {
-                    Console.WriteLine(ErrorMessages.InvalidMsg);
-                }
+                //}
+                //else
+                //{
+                //    Console.WriteLine(ErrorMessages.InvalidMsg);
+                //}
 
 
             }
