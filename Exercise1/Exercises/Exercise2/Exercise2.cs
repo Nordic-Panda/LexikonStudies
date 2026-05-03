@@ -55,7 +55,7 @@ namespace CSharpExercises.Exercises.Exercise2
             }
         }
 
-        public void YouthOrSenior() 
+        public static void YouthOrSenior() 
         {
             bool running = true;
 
@@ -78,6 +78,7 @@ namespace CSharpExercises.Exercises.Exercise2
                         GetSingleTicketPrice();
                         break;
                     case 2:
+                        GetGroupTicketPrice();
                         break;
                     case 0:
                         running = false;
@@ -89,23 +90,11 @@ namespace CSharpExercises.Exercises.Exercise2
             }
         }
 
-        private void GetSingleTicketPrice() 
+        private static void GetSingleTicketPrice() 
         {
             int age = InputHelper.GetIntInput(MenuConstants.EnterAge, _minAge, _maxAge, ErrorConstants.AgeInvalidMsg);
-            int price = GetTicketPriceByAge(age);
-
-            if (price == _youthTicketPrice)
-            {
-                Console.WriteLine(PriceConstants.YouthPrice);
-            }
-            else if (price == _seniorTicketPrice)
-            {
-                Console.WriteLine(PriceConstants.SeniorPrice);
-            }
-            else 
-            {
-                Console.WriteLine(PriceConstants.StandardPrice);
-            }
+            string message = GetTicketMessageByAge(age);
+            Console.WriteLine(message);
         }
 
         private static int GetTicketPriceByAge(int age)
@@ -118,16 +107,53 @@ namespace CSharpExercises.Exercises.Exercise2
                 return _standardTicketPrice;
         }
 
-        private void GetGroupTicketPriceByAge()
+        private static string GetTicketMessageByAge(int age)
+        {
+            if (age < 20)
+                return PriceConstants.YouthPrice;
+
+            if (age > 64)
+                return PriceConstants.SeniorPrice;
+
+            return PriceConstants.StandardPrice;
+        }
+
+        private static void GetGroupTicketPrice()
         {
             int sum = 0;
+            int youthCount = 0;
+            int seniorCount = 0;
+            int standardCount = 0;
             int size = InputHelper.GetIntInput(MenuConstants.EnterGroupSize, 0, 10, ErrorConstants.GroupSizeInvalidMsg);
 
-            for (int i = 0; i < size; i++)
+            if (size == 1)
             {
-                int age = InputHelper.GetIntInput($"Age for customer {i + 1}:", _minAge, _maxAge, ErrorConstants.GroupSizeInvalidMsg);
-                int price = GetTicketPriceByAge(age);
-                sum += price;
+                Console.WriteLine(ErrorConstants.GroupSizeInvalidMsg);
+            }
+            else
+            {
+                for (int i = 0; i < size; i++)
+                {
+                    int age = InputHelper.GetIntInput($"Age for customer {i + 1}:", _minAge, _maxAge, ErrorConstants.AgeInvalidMsg);
+                    int price = GetTicketPriceByAge(age);
+                    sum += price;
+
+                    if (age < 20)
+                        youthCount++;
+                    else if (age > 64)
+                        seniorCount++;
+                    else
+                        standardCount++;
+                }
+
+                Console.WriteLine(MenuConstants.MenuStarLine);
+                Console.WriteLine("Tickets Summary:");
+                Console.WriteLine($"Total tickets: {size}");
+                Console.WriteLine($"Youth tickets ({_youthTicketPrice} kr): {youthCount}");
+                Console.WriteLine($"Senior tickets ({_seniorTicketPrice} kr): {seniorCount}");
+                Console.WriteLine($"Standard tickets ({_standardTicketPrice} kr): {standardCount}");
+                Console.WriteLine($"{PriceConstants.TotalPrice} {sum} kr");
+                Console.WriteLine(MenuConstants.MenuStarLine);
             }
         }
     }

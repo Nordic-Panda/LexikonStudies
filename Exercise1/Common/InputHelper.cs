@@ -1,6 +1,4 @@
-﻿using CSharpExercises.Constants.ErrorMessages;
-
-namespace CSharpExercises.Common.InputHelper
+﻿namespace CSharpExercises.Common.InputHelper
 {
     public static class InputHelper
     {
