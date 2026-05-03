@@ -35,7 +35,7 @@
                     if (min == 0 && max == 0)
                         return userInput;
                     
-                    if (min != 0 && userInput.Split(" ").Length >= min)
+                    if (min != 0 && userInput.Split(" ", StringSplitOptions.RemoveEmptyEntries).Length >= min)
                         return userInput;
                 }
 

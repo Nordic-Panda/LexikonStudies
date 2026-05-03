@@ -194,7 +194,7 @@ namespace CSharpExercises.Exercises.Exercise2
         {
             var userInput = InputHelper.GetStringInput(MenuConstants.EnterThreeWords, ErrorConstants.EmptyOrInvalidInputMsg, 3);
 
-            var stringArr = userInput.Split(" ");
+            var stringArr = userInput.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
             Console.WriteLine(MenuConstants.MenuStarLine);
             Console.WriteLine($"3rd word is: {stringArr[_wordToSelect - 1]}");
