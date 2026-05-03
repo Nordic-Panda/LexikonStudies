@@ -13,6 +13,7 @@ namespace CSharpExercises.Exercises.Exercise2
         private const int _youthTicketPrice = 80;
         private const int _seniorTicketPrice = 90;
         private const int _standardTicketPrice = 120;
+        private const int _freeTicket = 0;
 
         private const int _repeatCount = 10;
 
@@ -108,19 +109,22 @@ namespace CSharpExercises.Exercises.Exercise2
 
         private static int GetTicketPriceByAge(int age)
         {
-            if (age < 20)
+            if (age < 5 || age > 100)
+                return _freeTicket;
+            else if (age < 20)
                 return _youthTicketPrice;
             else if (age > 64)
-                return _seniorTicketPrice; 
+                return _seniorTicketPrice;
             else
                 return _standardTicketPrice;
         }
 
         private static string GetTicketMessageByAge(int age)
         {
+            if (age < 5 || age > 100)
+                return PriceConstants.FreeTicket;
             if (age < 20)
                 return PriceConstants.YouthPrice;
-
             if (age > 64)
                 return PriceConstants.SeniorPrice;
 
@@ -133,6 +137,7 @@ namespace CSharpExercises.Exercises.Exercise2
             int youthCount = 0;
             int seniorCount = 0;
             int standardCount = 0;
+            int freeCount = 0;
             int size = InputHelper.GetIntInput(MenuConstants.EnterGroupSize, 0, 10, ErrorConstants.GroupSizeInvalidMsg);
 
             if (size == 1)
@@ -147,7 +152,9 @@ namespace CSharpExercises.Exercises.Exercise2
                     int price = GetTicketPriceByAge(age);
                     sum += price;
 
-                    if (age < 20)
+                    if (age < 5 || age > 100)
+                        freeCount++;
+                    else if (age < 20)
                         youthCount++;
                     else if (age > 64)
                         seniorCount++;
@@ -158,6 +165,7 @@ namespace CSharpExercises.Exercises.Exercise2
                 Console.WriteLine(MenuConstants.MenuStarLine);
                 Console.WriteLine("Tickets Summary:");
                 Console.WriteLine($"Group size: {size}");
+                Console.WriteLine($"Free tickets ({_freeTicket} kr): {freeCount}");
                 Console.WriteLine($"Youth tickets ({_youthTicketPrice} kr): {youthCount}");
                 Console.WriteLine($"Senior tickets ({_seniorTicketPrice} kr): {seniorCount}");
                 Console.WriteLine($"Standard tickets ({_standardTicketPrice} kr): {standardCount}");
