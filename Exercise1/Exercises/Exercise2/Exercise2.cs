@@ -9,7 +9,19 @@ namespace CSharpExercises.Exercises.Exercise2
     {
         public void Run()
         {
-            Console.WriteLine("ex 2");
+            bool running = true;
+
+            while (running)
+            {
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine("     Welcome to Exercise 2 - Flow Control With Loops and Strings");
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine("Please select from below menu (0-3):");
+                Console.WriteLine("1. Youth or Senior");
+                Console.WriteLine("2. Repeat 10 times");
+                Console.WriteLine("3. The third word");
+                Console.WriteLine("0. Return to main menu");
+            }
         }
     }
 }

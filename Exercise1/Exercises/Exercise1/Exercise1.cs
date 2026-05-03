@@ -16,36 +16,52 @@ namespace CSharpExercises.Exercises.Exercise1
         }
         public void Run()
         {
-            Console.WriteLine("Welcome to Exercise 1 - Restaurant Register");
-            Console.WriteLine("Please select from below menu (1-4):");
-            Console.WriteLine("1. Show all employees info");
-            Console.WriteLine("2. Add an employee");
-            Console.WriteLine("3. Edit an employee");
-            Console.WriteLine("4. Remove an employee");
+            bool running = true;
 
-            string userMenuInput = Console.ReadLine();
-
-            if (int.TryParse(userMenuInput, out int userChoice))
+            while (running)
             {
-                if (userChoice >= 1 && userChoice <= 4)
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine("     Welcome to Exercise 1 - Restaurant Register");
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine("Please select from below menu (0-4):");
+                Console.WriteLine("1. Show all employees info");
+                Console.WriteLine("2. Add an employee");
+                Console.WriteLine("3. Edit an employee");
+                Console.WriteLine("4. Remove an employee");
+                Console.WriteLine("0. Return to main menu");
+
+                string userMenuInput = Console.ReadLine();
+
+                if (int.TryParse(userMenuInput, out int userChoice))
                 {
-                    switch (userChoice)
+                    if (userChoice >= 0 && userChoice <= 4)
                     {
-                        case 1:
-                            ShowEmployees();
-                            break;
-                        case 2:
-                            AddEmployee();
-                            break;
-                        case 3:
-                            EditEmployee();
-                            break;
-                        case 4:
-                            RemoveEmployee();
-                            break;
-                        default:
-                            Console.WriteLine(_invalidMsg);
-                            break;
+                        switch (userChoice)
+                        {
+                            case 1:
+                                ShowEmployees();
+                                break;
+                            case 2:
+                                AddEmployee();
+                                break;
+                            case 3:
+                                EditEmployee();
+                                break;
+                            case 4:
+                                RemoveEmployee();
+                                break;
+                            case 0:
+                                running = false;
+                                break;
+                            default:
+                                Console.WriteLine(_invalidMsg);
+                                break;
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine(_invalidMsg);
                     }
 
                 }
@@ -53,11 +69,6 @@ namespace CSharpExercises.Exercises.Exercise1
                 {
                     Console.WriteLine(_invalidMsg);
                 }
-
-            }
-            else
-            {
-                Console.WriteLine(_invalidMsg);
             }
 
 
